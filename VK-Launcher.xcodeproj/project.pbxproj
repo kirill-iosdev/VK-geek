@@ -24,6 +24,7 @@
 		ED5C81C8280994740094DCA4 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C81C7280994740094DCA4 /* RealmService.swift */; };
 		ED5C81CA280C3E890094DCA4 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C81C9280C3E890094DCA4 /* Gallery.swift */; };
 		ED72705527F2227D00FE3317 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72705427F2227D00FE3317 /* Session.swift */; };
+		EDAC78D12814097300299ED8 /* TableView+UpdateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAC78D02814097300299ED8 /* TableView+UpdateExtension.swift */; };
 		EDCB6E3527F5F312008B3934 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB6E3427F5F312008B3934 /* VkLoginViewController.swift */; };
 		EDCB6E3827F9DF10008B3934 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB6E3727F9DF10008B3934 /* NetworkService.swift */; };
 		EDEB987427B7F651002D3A11 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEB987327B7F651002D3A11 /* AllGroupsController.swift */; };
@@ -55,6 +56,7 @@
 		ED5C81C9280C3E890094DCA4 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		ED5C81CB280C56B30094DCA4 /* Tasks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Tasks.md; sourceTree = "<group>"; };
 		ED72705427F2227D00FE3317 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		EDAC78D02814097300299ED8 /* TableView+UpdateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+UpdateExtension.swift"; sourceTree = "<group>"; };
 		EDCB6E3427F5F312008B3934 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
 		EDCB6E3727F9DF10008B3934 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EDEB987327B7F651002D3A11 /* AllGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllGroupsController.swift; path = "VK-Launcher/Controllers/AllGroupsController.swift"; sourceTree = SOURCE_ROOT; };
@@ -115,6 +117,7 @@
 			children = (
 				EDEB987227B7F5AC002D3A11 /* Controllers */,
 				EDCB6E3627F9DE78008B3934 /* Services */,
+				EDAC78CF2814090E00299ED8 /* Extensions */,
 				EDEB987527B7F6C5002D3A11 /* Cell */,
 				EDEB987A27B7FDBC002D3A11 /* Model */,
 				ED50D3A727A99E99002D965B /* AppDelegate.swift */,
@@ -126,6 +129,14 @@
 				ED5C81CB280C56B30094DCA4 /* Tasks.md */,
 			);
 			path = "VK-Launcher";
+			sourceTree = "<group>";
+		};
+		EDAC78CF2814090E00299ED8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDAC78D02814097300299ED8 /* TableView+UpdateExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EDCB6E3627F9DE78008B3934 /* Services */ = {
@@ -300,6 +311,7 @@
 				ED50BCF527C0EC7B0094FA6D /* Constant.swift in Sources */,
 				EDEB988327B81847002D3A11 /* CustomTableViewCell.swift in Sources */,
 				EDEB987C27B7FDE0002D3A11 /* Group.swift in Sources */,
+				EDAC78D12814097300299ED8 /* TableView+UpdateExtension.swift in Sources */,
 				ED50BCF327C0E9BE0094FA6D /* MyGroupsViewController.swift in Sources */,
 				EDCB6E3827F9DF10008B3934 /* NetworkService.swift in Sources */,
 				ED50BCED27C0E7990094FA6D /* FriendsViewController.swift in Sources */,

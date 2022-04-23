@@ -12,7 +12,8 @@ class FriendsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var friends = try? Realm().objects(Friend.self) 
+    private lazy var friends = try? Realm().objects(Friend.self)
+    private var notificationToken: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +25,34 @@ class FriendsViewController: UIViewController {
         networkService.getFriendsList() { [weak self] friends in
             try? RealmService.save(items: friends)
         }
+        
+//        friends = try? RealmService.get(Friend.self)
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        notificationToken = friends?.observe({ [weak self] change in
+            switch change {
+            case.initial:
+                self?.tableView.reloadData()
+            case let .update(_, deletions, insertions, modifications):
+                self?.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notificationToken?.invalidate()
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fromFriendsToGallery" {

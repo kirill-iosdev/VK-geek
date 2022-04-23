@@ -14,15 +14,14 @@ class AllGroupsController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     private lazy var groups = try? Realm().objects(Group.self)
-    
-    let reuseIdentifier = "reuseIdentifier"
+    private var notificationToken: NotificationToken?
     
      lazy var sourceGroupsArray = groups
 //    var groupsArray = [GroupsData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
@@ -32,10 +31,26 @@ class AllGroupsController: UIViewController {
         let networkService = NetworkService()
         networkService.getGroupsList { [weak self] groups in
             try? RealmService.save(items: groups)
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
         }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        notificationToken = groups?.observe({ [weak self] change in
+            switch change {
+            case.initial:
+                self?.tableView.reloadData()
+            case let .update(_, deletions, insertions, modifications):
+                self?.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+            case .error(let error):
+                print(error)
+            }
+        })
     }
 }
 
@@ -71,7 +86,7 @@ extension AllGroupsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CustomTableViewCell,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as? CustomTableViewCell,
               let group = groups?[indexPath.item] else { return UITableViewCell() }
         cell.configure(group: group)
         return cell

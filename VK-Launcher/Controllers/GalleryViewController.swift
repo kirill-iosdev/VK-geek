@@ -15,6 +15,7 @@ class GalleryViewController: UIViewController {
     let reuseIdentifier = "reuseIdentifier"
     var photoArray = [Friend]()
     var selectedFriend: Friend?
+
     private lazy var photos = try? Realm().objects(Gallery.self)
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,7 +31,7 @@ class GalleryViewController: UIViewController {
         collectionView.dataSource = self
         
 //        let networkService = NetworkService()
-//        networkService.getPhotos(for: selectedFriend?.id ?? 0) { [weak self] photos in
+//        networkService.getPhotos(for: String(selectedFriend?.id ?? 0)) { [weak self] photos in
 //            try? RealmService.save(items: photos)
 //        }
     }

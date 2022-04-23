@@ -68,7 +68,7 @@ class NetworkService {
         session.resume()
     }
     
-    func getPhotos(for id: Int, completion: @escaping ([Gallery]) -> Void) {
+    func getPhotos(for friendId: String, completion: @escaping ([Gallery]) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.vk.com"
@@ -76,7 +76,7 @@ class NetworkService {
         urlComponents.queryItems = [
             URLQueryItem(name: "v", value: "5.131"),
             URLQueryItem(name: "access_token", value: accessToken),
-            URLQueryItem(name: "owner_id", value: String(id)),
+            URLQueryItem(name: "owner_id", value: friendId),
             URLQueryItem(name: "album_id", value: "profile"),
             URLQueryItem(name: "photo_sizes", value: "1")
         ]
@@ -85,6 +85,7 @@ class NetworkService {
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        print(request)
         
         let session = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
