@@ -17,7 +17,7 @@ class AllGroupsController: UIViewController {
     
     let reuseIdentifier = "reuseIdentifier"
     
-     lazy var sourceGroupsArray = groups
+    lazy var sourceGroupsArray = groups
 //    var groupsArray = [GroupsData]()
     
     override func viewDidLoad() {
