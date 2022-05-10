@@ -23,7 +23,7 @@ class FriendsViewController: UIViewController {
         let networkService = NetworkService()
         networkService.getFriendsList() { [weak self] friends in
             try? RealmService.save(items: friends)
-            }
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
