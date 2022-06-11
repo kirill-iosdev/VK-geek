@@ -16,15 +16,10 @@ class AuthorNewsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
-        
     }
     
     private func setupUI() {
         avatarImageView.layer.cornerRadius = 30
-    }
-    
-    override func prepareForReuse() {
-        
     }
     
     func configure() {
