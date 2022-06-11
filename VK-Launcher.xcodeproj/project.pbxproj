@@ -28,6 +28,7 @@
 		ED5C81C8280994740094DCA4 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C81C7280994740094DCA4 /* RealmService.swift */; };
 		ED5C81CA280C3E890094DCA4 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C81C9280C3E890094DCA4 /* Gallery.swift */; };
 		ED72705527F2227D00FE3317 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72705427F2227D00FE3317 /* Session.swift */; };
+		ED99E1782854B2A600BE5D96 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99E1772854B2A600BE5D96 /* News.swift */; };
 		EDCB6E3527F5F312008B3934 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB6E3427F5F312008B3934 /* VkLoginViewController.swift */; };
 		EDCB6E3827F9DF10008B3934 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB6E3727F9DF10008B3934 /* NetworkService.swift */; };
 		EDCD76622843C31E00B20CA8 /* InteractionNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD76602843C31E00B20CA8 /* InteractionNewsTableViewCell.swift */; };
@@ -68,6 +69,7 @@
 		ED5C81C9280C3E890094DCA4 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		ED5C81CB280C56B30094DCA4 /* Tasks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Tasks.md; sourceTree = "<group>"; };
 		ED72705427F2227D00FE3317 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		ED99E1772854B2A600BE5D96 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		EDCB6E3427F5F312008B3934 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
 		EDCB6E3727F9DF10008B3934 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EDCD76602843C31E00B20CA8 /* InteractionNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionNewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				EDEB987B27B7FDE0002D3A11 /* Group.swift */,
+				ED99E1772854B2A600BE5D96 /* News.swift */,
 				ED50BCF627C125E50094FA6D /* Friend.swift */,
 				ED5C81C9280C3E890094DCA4 /* Gallery.swift */,
 				ED72705427F2227D00FE3317 /* Session.swift */,
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED5C81CA280C3E890094DCA4 /* Gallery.swift in Sources */,
+				ED99E1782854B2A600BE5D96 /* News.swift in Sources */,
 				ED50BD0127C137960094FA6D /* GalleryViewController.swift in Sources */,
 				EDEF3F05284392C100BE9F3D /* AuthorNewsTableViewCell.swift in Sources */,
 				EDCB6E3527F5F312008B3934 /* VkLoginViewController.swift in Sources */,
