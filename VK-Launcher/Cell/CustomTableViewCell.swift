@@ -14,10 +14,10 @@ class CustomTableViewCell: UITableViewCell {
     
     var completion: (() -> Void)?
     
-    func configure(image: UIImage?, name: String?) {
-        avatarImageView.image = image
-        nameLabel.text = name
-    } //????
+//    func configure(image: UIImage?, name: String?) {
+//        avatarImageView.image = image
+//        nameLabel.text = name
+//    } //????
     
     func configure(group: Group) {
         let imageUrl = URL(string: group.photo50)

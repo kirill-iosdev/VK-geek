@@ -14,8 +14,6 @@ class RealmService {
         print(configuration.fileURL ?? "")
         try realm.write {
             realm.add(items, update: update)
-            //Как сделать что бы при уменьшении поступающих обьектов из json в реалме удалялись лишние?
         }
     }
-    
 }
