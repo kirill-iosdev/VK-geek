@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 class AllGroupsController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -18,7 +18,6 @@ class AllGroupsController: UIViewController {
     let reuseIdentifier = "reuseIdentifier"
     
     lazy var sourceGroupsArray = groups
-//    var groupsArray = [GroupsData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +31,7 @@ class AllGroupsController: UIViewController {
         let networkService = NetworkService()
         networkService.getGroupsList { [weak self] groups in
             try? RealmService.save(items: groups)
+            
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -41,18 +41,18 @@ class AllGroupsController: UIViewController {
 
 extension AllGroupsController: UISearchBarDelegate {
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//        if searchText.isEmpty {
-//            groupsArray = sourceGroupsArray
-//        }
-//        else {
-//            groupsArray = sourceGroupsArray.filter({ groupItem in
-//                groupItem.name.lowercased().contains(searchText.lowercased())
-//            })
-//        }
-//        tableView.reloadData()
-//    }
+    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    //
+    //        if searchText.isEmpty {
+    //            groupsArray = sourceGroupsArray
+    //        }
+    //        else {
+    //            groupsArray = sourceGroupsArray.filter({ groupItem in
+    //                groupItem.name.lowercased().contains(searchText.lowercased())
+    //            })
+    //        }
+    //        tableView.reloadData()
+    //    }
 }
 
 extension AllGroupsController: UITableViewDelegate {

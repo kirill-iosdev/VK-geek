@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 class GalleryViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     let reuseIdentifier = "reuseIdentifier"
@@ -29,10 +29,10 @@ class GalleryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//        let networkService = NetworkService()
-//        networkService.getPhotos(for: selectedFriend?.id ?? 0) { [weak self] photos in
-//            try? RealmService.save(items: photos)
-//        }
+        //        let networkService = NetworkService()
+        //        networkService.getPhotos(for: selectedFriend?.id ?? 0) { [weak self] photos in
+        //            try? RealmService.save(items: photos)
+        //        }
     }
 }
 

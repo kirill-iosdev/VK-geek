@@ -46,7 +46,7 @@ class CustomLoginViewController: UIViewController {
     
     @IBAction func loginButton(_ sender: UIButton) {
         guard let loginText = self.loginTextField.text, loginText == "admin",
-                let passwordText = self.passwordTextField.text, passwordText == "12345"
+              let passwordText = self.passwordTextField.text, passwordText == "12345"
         else {
             print("Неверные данные")
             return
@@ -84,7 +84,7 @@ class CustomLoginViewController: UIViewController {
         scrollview.contentInset = UIEdgeInsets.zero
         scrollview.scrollIndicatorInsets = UIEdgeInsets.zero
     }
-
+    
     @objc func onTap() {
         self.view.endEditing(true)
     }
@@ -92,6 +92,6 @@ class CustomLoginViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
+    
 }
 

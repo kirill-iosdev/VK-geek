@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 class VkLoginViewController: UIViewController {
-
+    
     @IBOutlet weak var webView: WKWebView! {
         didSet {
             webView.navigationDelegate = self
@@ -62,8 +62,8 @@ extension VkLoginViewController: WKNavigationDelegate {
         guard let token = params["access_token"],
               let userIdString = params["user_id"],
               let userIdInt = Int(userIdString) else {
-                decisionHandler(.allow)
-                return
+                  decisionHandler(.allow)
+                  return
               }
         
         Session.shared.token = token

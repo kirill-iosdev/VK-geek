@@ -8,9 +8,9 @@
 import UIKit
 
 class MyGroupsViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
-   
+    
     let reuseIdentifier = "reuseIdentifier"
     var myGroupsArray = [Group]()
     
