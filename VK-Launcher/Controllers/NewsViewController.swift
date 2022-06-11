@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewsViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    private lazy var news = try? Realm().objects(News.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +22,21 @@ class NewsViewController: UIViewController {
         registerCells()
         tableView.separatorStyle = .none
         
+        let networkService = NetworkService()
+        networkService.getNews() { [weak self] news in
+            try? RealmService.save(items: news)
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     private func registerCells() {
-        tableView.register(UINib(nibName: "AuthorNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "cell1")
-        tableView.register(UINib(nibName: "TextNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "cell2")
-        tableView.register(UINib(nibName: "ImageNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "cell3")
-        tableView.register(UINib(nibName: "InteractionNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "cell4")
+        tableView.register(UINib(nibName: "AuthorNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "authorCell")
+        tableView.register(UINib(nibName: "TextNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
+        tableView.register(UINib(nibName: "ImageNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "imageCell")
+        tableView.register(UINib(nibName: "InteractionNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "interactionCell")
     }
 }
 
@@ -50,7 +61,7 @@ extension NewsViewController: UITableViewDelegate {
 extension NewsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        news?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,18 +71,19 @@ extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as? AuthorNewsTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "authorCell", for: indexPath) as? AuthorNewsTableViewCell else { return UITableViewCell() }
             cell.configure()
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as? TextNewsTableViewCell else { return UITableViewCell() }
-            cell.configure()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath) as? TextNewsTableViewCell,
+                  let news = news?[indexPath.item]  else { return UITableViewCell() }
+            cell.configure(news: news)
             return cell
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell3", for: indexPath) as? ImageNewsTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as? ImageNewsTableViewCell else { return UITableViewCell() }
             return cell
         case 3:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell4", for: indexPath) as? InteractionNewsTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "interactionCell", for: indexPath) as? InteractionNewsTableViewCell else { return UITableViewCell() }
             return cell
         default:
             return UITableViewCell()

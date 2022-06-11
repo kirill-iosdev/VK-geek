@@ -12,18 +12,30 @@ class FriendsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var friends = try? Realm().objects(Friend.self) 
+    private lazy var friends = try? Realm().objects(Friend.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
-      
+        
+        
         let networkService = NetworkService()
-        networkService.getFriendsList() { [weak self] friends in
-            try? RealmService.save(items: friends)
+        
+//        networkService.getFriendsList() { [weak self] friends in
+//            try? RealmService.save(items: friends)
+//        }
+        
+        networkService.getUrl()
+            .then(on: .global(), networkService.getData(_:))
+            .then(networkService.getParsedData(_:))
+            .done(on: .main) { friends in
+                print(friends)
+            }.catch { error in
+                print(error)
             }
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -39,21 +51,22 @@ class FriendsViewController: UIViewController {
     }
 }
 
-    extension FriendsViewController: UITableViewDelegate {
-            func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-                return 70
-        }
-    
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            performSegue(withIdentifier: "fromFriendsToGallery", sender: nil)
-        }
+extension FriendsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "fromFriendsToGallery", sender: nil)
+    }
+}
 
-    extension FriendsViewController: UITableViewDataSource {
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            friends?.count ?? 0
-        }
+extension FriendsViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        friends?.count ?? 0
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as? CustomTableViewCell,

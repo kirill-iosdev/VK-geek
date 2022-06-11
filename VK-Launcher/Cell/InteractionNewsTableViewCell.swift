@@ -15,11 +15,6 @@ class InteractionNewsTableViewCell: UITableViewCell {
     @IBOutlet weak var watchCounterLabel: UILabel!
     @IBOutlet weak var eyeImageView: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-       
-    }
-    
     @IBAction func likeButton(_ sender: Any) {
     }
     
