@@ -14,9 +14,8 @@ class AllGroupsController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     private lazy var groups = try? Realm().objects(Group.self)
-    
-    let reuseIdentifier = "reuseIdentifier"
-    
+    private var photoService: PhotoService?
+    private let reuseIdentifier = "reuseIdentifier"
     lazy var sourceGroupsArray = groups
     
     override func viewDidLoad() {
@@ -25,7 +24,8 @@ class AllGroupsController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
-        
+        photoService = PhotoService(container: tableView)
+        photoService = PhotoService(container: tableView)
         groups = sourceGroupsArray
         
         let networkService = NetworkService()
@@ -73,7 +73,8 @@ extension AllGroupsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CustomTableViewCell,
               let group = groups?[indexPath.item] else { return UITableViewCell() }
-        cell.configure(group: group)
+        let image = photoService?.photo(atIndexPath: indexPath, byUrl: group.photo50)
+        cell.configure(group: group, image: image)
         return cell
     }
 }

@@ -24,6 +24,12 @@ class CustomTableViewCell: UITableViewCell {
         if let data = try? Data(contentsOf: imageUrl!) {
             avatarImageView.image = UIImage(data: data)
         }
+        
+        nameLabel.text = group.name
+    }
+    
+    func configure(group: Group, image: UIImage?) {
+        avatarImageView.image = image
         nameLabel.text = group.name
     }
     
@@ -32,8 +38,15 @@ class CustomTableViewCell: UITableViewCell {
         if let data = try? Data(contentsOf: imageUrl!) {
             avatarImageView.image = UIImage(data: data)
         }
+        
         nameLabel.text = friend.firstName + " " + friend.lastName
     }
+    
+    func configure(friend: Friend, image: UIImage?) {
+        avatarImageView.image = image
+        nameLabel.text = friend.firstName + " " + friend.lastName
+    }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()

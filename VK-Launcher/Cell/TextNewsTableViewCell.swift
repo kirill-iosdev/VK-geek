@@ -12,8 +12,8 @@ class TextNewsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var textNewsLabel: UILabel!
     
-    func configure(news: News) {
-        textNewsLabel.text = news.text
+    func configure(text: String?) {
+        textNewsLabel.text = text
     }
     
     override func prepareForReuse() {

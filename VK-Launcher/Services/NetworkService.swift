@@ -35,7 +35,7 @@ class NetworkService {
         
         return Promise { resolver in
             guard let url = urlComponents.url else {
-                resolver.reject(error as! Error)  //AppError.notCorrectUrl
+                resolver.reject(AppError.notCorrectUrl)
                 return
             }
             resolver.fulfill(url)
@@ -48,7 +48,7 @@ class NetworkService {
         return Promise { resolver in
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data else {
-                    resolver.reject(error as! Error) //AppError.errorTask
+                    resolver.reject(AppError.errorTask)
                     return
                 }
                 resolver.fulfill(data)
@@ -64,7 +64,7 @@ class NetworkService {
                 let friends = json["response"]["items"].arrayValue.compactMap { Friend($0) }
                 resolver.fulfill(friends)
             } catch {
-                resolver.reject(error) //AppError.failedToDecode
+                resolver.reject(AppError.failedToDecode) 
             }
         }
     }
@@ -132,7 +132,9 @@ class NetworkService {
         urlComponents.queryItems = [
             URLQueryItem(name: "v", value: "5.131"),
             URLQueryItem(name: "access_token", value: accessToken),
-            URLQueryItem(name: "filters", value: "post")
+            URLQueryItem(name: "filters", value: "post"),
+            URLQueryItem(name: "count", value: "20"),
+            URLQueryItem(name: "start_from", value: "next_from")
         ]
         
         guard let url = urlComponents.url else { return }

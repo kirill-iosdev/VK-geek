@@ -25,11 +25,13 @@ import SwiftyJSON
 class News: Object, Codable {
     dynamic var text = ""
     dynamic var id = 0
+//    dynamic var photoUrl = ""
     
     convenience init(_ json: JSON) {
         self.init()
         self.text = json["text"].stringValue
         self.id = json["source_id"].intValue
+//        self.photoUrl = json["url"].stringValue
     }
     
     override static func primaryKey() -> String? {
