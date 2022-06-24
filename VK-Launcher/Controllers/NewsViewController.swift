@@ -18,7 +18,6 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
         registerCells()
         tableView.separatorStyle = .none
         
@@ -47,7 +46,7 @@ extension NewsViewController: UITableViewDelegate {
         case 0:
             return 70
         case 1:
-            return 250
+            return UITableView.automaticDimension
         case 2:
             return 250
         case 3:
@@ -75,9 +74,9 @@ extension NewsViewController: UITableViewDataSource {
             cell.configure()
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath) as? TextNewsTableViewCell,
-                  let news = news?[indexPath.item]  else { return UITableViewCell() }
-            cell.configure(news: news)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as? TextNewsTableViewCell,
+                  let text = news?[indexPath.section].text else { return UITableViewCell() }
+            cell.configure(text: text)
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as? ImageNewsTableViewCell else { return UITableViewCell() }

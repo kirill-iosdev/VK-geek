@@ -12,6 +12,7 @@
 		ED03746A2843B4F3006757E1 /* TextNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0374682843B4F3006757E1 /* TextNewsTableViewCell.xib */; };
 		ED03746D2843C041006757E1 /* ImageNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED03746B2843C041006757E1 /* ImageNewsTableViewCell.swift */; };
 		ED03746E2843C041006757E1 /* ImageNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED03746C2843C041006757E1 /* ImageNewsTableViewCell.xib */; };
+		ED1DC6C5285F206200604C27 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1DC6C4285F206200604C27 /* AppError.swift */; };
 		ED2471DD284B4C81002113CA /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2471DC284B4C81002113CA /* News.swift */; };
 		ED50BCED27C0E7990094FA6D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED50BCEC27C0E7990094FA6D /* FriendsViewController.swift */; };
 		ED50BCF327C0E9BE0094FA6D /* MyGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED50BCF227C0E9BE0094FA6D /* MyGroupsViewController.swift */; };
@@ -28,6 +29,7 @@
 		ED50D3B427A99E99002D965B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED50D3B227A99E99002D965B /* LaunchScreen.storyboard */; };
 		ED5C81C8280994740094DCA4 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C81C7280994740094DCA4 /* RealmService.swift */; };
 		ED5C81CA280C3E890094DCA4 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C81C9280C3E890094DCA4 /* Gallery.swift */; };
+		ED67BB87285612310056946C /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED67BB86285612310056946C /* PhotoService.swift */; };
 		ED72705527F2227D00FE3317 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72705427F2227D00FE3317 /* Session.swift */; };
 		EDCB6E3527F5F312008B3934 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB6E3427F5F312008B3934 /* VkLoginViewController.swift */; };
 		EDCB6E3827F9DF10008B3934 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB6E3727F9DF10008B3934 /* NetworkService.swift */; };
@@ -50,6 +52,7 @@
 		ED0374682843B4F3006757E1 /* TextNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextNewsTableViewCell.xib; sourceTree = "<group>"; };
 		ED03746B2843C041006757E1 /* ImageNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNewsTableViewCell.swift; sourceTree = "<group>"; };
 		ED03746C2843C041006757E1 /* ImageNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageNewsTableViewCell.xib; sourceTree = "<group>"; };
+		ED1DC6C4285F206200604C27 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		ED2471DC284B4C81002113CA /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		ED50BCEC27C0E7990094FA6D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		ED50BCF227C0E9BE0094FA6D /* MyGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		ED5C81C7280994740094DCA4 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		ED5C81C9280C3E890094DCA4 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		ED5C81CB280C56B30094DCA4 /* Tasks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Tasks.md; sourceTree = "<group>"; };
+		ED67BB86285612310056946C /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		ED72705427F2227D00FE3317 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		EDCB6E3427F5F312008B3934 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
 		EDCB6E3727F9DF10008B3934 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -112,6 +116,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		ED1DC6C3285F204600604C27 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				ED1DC6C4285F206200604C27 /* AppError.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		ED50D39B27A99E99002D965B = {
 			isa = PBXGroup;
 			children = (
@@ -151,8 +163,10 @@
 		EDCB6E3627F9DE78008B3934 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				ED1DC6C3285F204600604C27 /* Helper */,
 				EDCB6E3727F9DF10008B3934 /* NetworkService.swift */,
 				ED5C81C7280994740094DCA4 /* RealmService.swift */,
+				ED67BB86285612310056946C /* PhotoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -340,6 +354,7 @@
 				EDCD76622843C31E00B20CA8 /* InteractionNewsTableViewCell.swift in Sources */,
 				ED72705527F2227D00FE3317 /* Session.swift in Sources */,
 				ED50BD0627C1383E0094FA6D /* GalleryCollectionViewCell.swift in Sources */,
+				ED67BB87285612310056946C /* PhotoService.swift in Sources */,
 				ED50D3AC27A99E99002D965B /* CustomLoginViewController.swift in Sources */,
 				EDEB987427B7F651002D3A11 /* AllGroupsController.swift in Sources */,
 				EDEF3F0028438A9D00BE9F3D /* NewsViewController.swift in Sources */,
@@ -348,6 +363,7 @@
 				EDEB987C27B7FDE0002D3A11 /* Group.swift in Sources */,
 				ED50BCF327C0E9BE0094FA6D /* MyGroupsViewController.swift in Sources */,
 				ED03746D2843C041006757E1 /* ImageNewsTableViewCell.swift in Sources */,
+				ED1DC6C5285F206200604C27 /* AppError.swift in Sources */,
 				EDCB6E3827F9DF10008B3934 /* NetworkService.swift in Sources */,
 				ED50BCED27C0E7990094FA6D /* FriendsViewController.swift in Sources */,
 				ED50BCF727C125E50094FA6D /* Friend.swift in Sources */,

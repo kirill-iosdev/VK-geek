@@ -28,14 +28,14 @@ class NetworkService {
             URLQueryItem(name: "v", value: "5.131"),
             URLQueryItem(name: "access_token", value: self.accessToken),
             URLQueryItem(name: "order", value: "hints"),
-            URLQueryItem(name: "count", value: "10"),
+            URLQueryItem(name: "count", value: "20"),
             URLQueryItem(name: "fields", value: "nickname"),
             URLQueryItem(name: "fields", value: "photo_50")
         ]
         
         return Promise { resolver in
             guard let url = urlComponents.url else {
-                resolver.reject(error as! Error)  //AppError.notCorrectUrl
+                resolver.reject(AppError.notCorrectUrl)
                 return
             }
             resolver.fulfill(url)
@@ -48,7 +48,7 @@ class NetworkService {
         return Promise { resolver in
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data else {
-                    resolver.reject(error as! Error) //AppError.errorTask
+                    resolver.reject(AppError.errorTask)
                     return
                 }
                 resolver.fulfill(data)
@@ -64,7 +64,7 @@ class NetworkService {
                 let friends = json["response"]["items"].arrayValue.compactMap { Friend($0) }
                 resolver.fulfill(friends)
             } catch {
-                resolver.reject(error) //AppError.failedToDecode
+                resolver.reject(AppError.failedToDecode) 
             }
         }
     }
@@ -105,7 +105,7 @@ class NetworkService {
             URLQueryItem(name: "v", value: "5.131"),
             URLQueryItem(name: "access_token", value: accessToken),
             URLQueryItem(name: "extended", value: "1"),
-            URLQueryItem(name: "count", value: "10")
+            URLQueryItem(name: "count", value: "20")
         ]
         
         guard let url = urlComponents.url else { return }
@@ -117,7 +117,9 @@ class NetworkService {
             guard let data = data else { return }
             let json = JSON(data)
             let groups = json["response"]["items"].arrayValue.compactMap { Group($0) }
-            completion(groups)
+            DispatchQueue.main.async {
+                completion(groups)
+            }
         }
         session.resume()
     }
@@ -130,7 +132,9 @@ class NetworkService {
         urlComponents.queryItems = [
             URLQueryItem(name: "v", value: "5.131"),
             URLQueryItem(name: "access_token", value: accessToken),
-            URLQueryItem(name: "filters", value: "post")
+            URLQueryItem(name: "filters", value: "post"),
+            URLQueryItem(name: "count", value: "20"),
+            URLQueryItem(name: "start_from", value: "next_from")
         ]
         
         guard let url = urlComponents.url else { return }
@@ -171,9 +175,6 @@ class NetworkService {
             let json = JSON(data)
             print(json)
             let photo = json["response"]["items"][0]["sizes"].arrayValue.compactMap { Gallery($0) }
-            photo.forEach {
-                print("\($0.url)")
-            }
             completion(photo)
         }
         session.resume()

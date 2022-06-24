@@ -13,6 +13,7 @@ class FriendsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private lazy var friends = try? Realm().objects(Friend.self)
+    private var photoService: PhotoService?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,25 +21,18 @@ class FriendsViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
         
+        photoService = PhotoService(container: tableView)
         
         let networkService = NetworkService()
         
-//        networkService.getFriendsList() { [weak self] friends in
-//            try? RealmService.save(items: friends)
-//        }
-        
         networkService.getUrl()
-            .then(on: .global(), networkService.getData(_:))
-            .then(networkService.getParsedData(_:))
-            .done(on: .main) { friends in
-                print(friends)
+            .then(on: DispatchQueue.global(), networkService.getData(_:))
+            .then(on: DispatchQueue.global(), networkService.getParsedData(_:))
+            .done(on: DispatchQueue.main) { friends in
+                self.tableView.reloadData()
             }.catch { error in
                 print(error)
             }
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,7 +65,8 @@ extension FriendsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as? CustomTableViewCell,
               let friend = friends?[indexPath.item] else { return UITableViewCell() }
-        cell.configure(friend: friend)
+        let image = photoService?.photo(atIndexPath: indexPath, byUrl: friend.photo50)
+        cell.configure(friend: friend, image: image)
         return cell
     }
 }
